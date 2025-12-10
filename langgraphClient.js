@@ -1,9 +1,13 @@
 // langgraphClient.js
-const { client } = require('@langchain/langgraph-sdk');
+const { LangGraphClient } = require('langgraph'); // or your SDK import
 
-const graph = client.getGraph({
-    name: 'my-whatsapp-agent',
-    version: '1.0.0',
+// Initialize client
+const client = new LangGraphClient({
+    apiKey: process.env.LANGGRAPH_API_KEY,
 });
 
-module.exports = { graph };
+// Get a graph instance
+const graph = client.getGraph(); // make sure getGraph() exists and is synchronous
+
+module.exports = { client, graph };
+
